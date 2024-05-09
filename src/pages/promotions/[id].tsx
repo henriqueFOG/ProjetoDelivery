@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useData } from '../contexts/DataContext';
+import { useData } from '../../contexts/DataContext';
 
 const Home = () => {
   const data = useData();
