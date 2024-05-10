@@ -1,7 +1,8 @@
+import react from 'react';
 import Link from 'next/link';
 import { useData } from '../../contexts/DataContext';
 
-const Home = () => {
+const Promotions = () => {
   const data = useData();
   return (
     <div>
@@ -16,3 +17,4 @@ const Home = () => {
     </div>
   );
 };
+export default Promotions;
