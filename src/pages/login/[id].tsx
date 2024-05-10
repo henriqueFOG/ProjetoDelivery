@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { useData } from '@/contexts/DataContext';
 import { Container, Box, Button, TextField, Typography, Paper } from '@mui/material';
+import Image from 'next/image';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -20,7 +21,13 @@ const LoginPage = () => {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Box>
+    <Container component="main" maxWidth="xs" sx={{ bgcolor: 'white' }}>
+        <Box sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+  <Typography component="h1" variant="h2">
+    <Image src="/Logo_Rapidex.jpg" alt="Logo" width={400} height={100} />
+  </Typography>
+</Box>
       <Paper elevation={6} sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', p: 4 }}>
         <Typography component="h1" variant="h5" sx={{ mb: 2 }}>
           Login
@@ -63,6 +70,7 @@ const LoginPage = () => {
         </Button>
       </Paper>
     </Container>
+    </Box>
   );
 };
 

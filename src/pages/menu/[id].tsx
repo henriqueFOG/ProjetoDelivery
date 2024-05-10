@@ -17,11 +17,11 @@ const MenuPage = () => {
   const menus = menuData.filter(menu => menu.clienteId === id);
 
   return (
-    <Box p={4} sx={{ flexGrow: 1, backgroundColor: '#f0f0f0' }}>
+    <Box alignContent="center" p={4} sx={{ flexGrow: 1, backgroundColor: '#f0f0f0' }}>
       <Typography variant="h4" gutterBottom component="div" sx={{ textAlign: 'center', mb: 3 }}>
         Cardápio
       </Typography>
-      <Grid container spacing={2}>
+      <Grid alignContent="center" container spacing={2}>
         {menus.length > 0 ? (
           menus.map((menu) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={menu.id}>

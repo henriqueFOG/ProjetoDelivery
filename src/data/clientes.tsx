@@ -1,4 +1,5 @@
 export const clientes = [
-    { id: '1', nome: 'Empresa A', detalhes: 'Detalhes da Empresa A' },
-    { id: '2', nome: 'Empresa B', detalhes: 'Detalhes da Empresa B' }
+    { id: '1', nome: 'Oishi', detalhes: 'Somos uma empresa de comida japonesa', categoria: 'japonesa'},
+    { id: '2', nome: 'Bull Brothers', detalhes: 'Somos uma hamburgueria', categoria: 'hamburgueria' },
+    { id: '3', nome: 'manarolla', detalhes: 'Somos uma Pizzaria', categoria: 'Pizzaria' },
   ];
