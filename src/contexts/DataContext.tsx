@@ -26,7 +26,6 @@ const DataContext = createContext<DataType>(defaultState);
 
 export const DataProvider = ({ children }: { children: ReactNode }) => {
   const [currentClientId, setCurrentClientId] = useState<string>(''); // Comece com um ID padrão ou vazio
-
   const value = {
     clientes,
     promotions,

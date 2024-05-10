@@ -5,14 +5,8 @@ const Home = () => {
   const data = useData();
   return (
     <div>
-      <h1>Clientes</h1>
-      {data && data.clientes.map(cliente => (
-        <p key={cliente.id}>
-          <Link href={`/cliente/${cliente.id}`}>
-            <a>{cliente.nome}</a>
-          </Link>
-        </p>
-      ))}
+      <h1>Bem vindo ao Rapidex</h1>
     </div>
   );
 };
+export default Home;
