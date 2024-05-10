@@ -1,11 +1,12 @@
-import React from 'react';
+import Link from 'next/link';
+import { useData } from '../contexts/DataContext';
 
-const HomePage = () => {
+const Home = () => {
+  const data = useData();
   return (
     <div>
-      <h1></h1>
+      <h1>Bem vindo ao Rapidex</h1>
     </div>
   );
 };
-
-export default HomePage;
+export default Home;
