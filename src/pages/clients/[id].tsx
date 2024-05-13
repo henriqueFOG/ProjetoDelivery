@@ -5,7 +5,7 @@ import { Box, TextField, Typography } from '@mui/material';
 
 
 
-const ClientePage = () => {
+const ClientePage = ({}) => {
   const router = useRouter();
   const { id } = router.query;
   const { clientes, setCurrentClientId,currentClientId } = useData(); // Acesse os clientes do contexto
@@ -48,23 +48,24 @@ const ClientePage = () => {
 export default ClientePage;
 
 export async function getStaticPaths() {
-  const ids = ['1', '2', '3'];
+  // Suponha que você obtenha esses IDs de um arquivo ou de uma API
+  const clients = [{ id: '1' }, { id: '2' }, { id: '3' }]; // Exemplo de dados
 
-  const paths = ids.map(id => ({
-    params: { id },
+  const paths = clients.map(client => ({
+    params: { id: client.id },
   }));
 
-  return { paths, fallback: false };
+  return { paths, fallback: 'blocking' };
 }
 
 export async function getStaticProps({ params }: { params: { id: string } }) {
-  // Substitua isso com a lógica para obter os dados para o cliente com o id especificado
-  const cliente = { id: params.id, nome: 'Nome do Cliente', detalhes: 'Detalhes do Cliente' };
-
-  return {
-    props: {
-      cliente,
-    },
+  // Busque dados do cliente baseado em params.id, aqui usamos dados mockados
+  const clientData = {
+    id: params.id,
+    name: `Cliente ${params.id}`,
+    details: `Detalhes do Cliente ${params.id}`,
   };
+
+  return { props: { client: clientData } };
 }
 
