@@ -3,6 +3,8 @@ import { useRouter } from 'next/router';
 import { useData } from '@/contexts/DataContext';
 import { Box, TextField, Typography } from '@mui/material';
 
+
+
 const ClientePage = () => {
   const router = useRouter();
   const { id } = router.query;
@@ -15,7 +17,7 @@ const ClientePage = () => {
     }
   }, [id, currentClientId, setCurrentClientId]);
   
-    useEffect(() => {
+  useEffect(() => {
     if (typeof id === 'string' && id !== currentClientId) {
       setCurrentClientId(id);
     }
@@ -44,3 +46,25 @@ const ClientePage = () => {
 };
 
 export default ClientePage;
+
+export async function getStaticPaths() {
+  const ids = ['1', '2', '3'];
+
+  const paths = ids.map(id => ({
+    params: { id },
+  }));
+
+  return { paths, fallback: false };
+}
+
+export async function getStaticProps({ params }: { params: { id: string } }) {
+  // Substitua isso com a lógica para obter os dados para o cliente com o id especificado
+  const cliente = { id: params.id, nome: 'Nome do Cliente', detalhes: 'Detalhes do Cliente' };
+
+  return {
+    props: {
+      cliente,
+    },
+  };
+}
+
