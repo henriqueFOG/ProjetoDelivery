@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    basePath:'/src/pages',
+  basePath: '/nextjs',
     output:'export',
+    distDir:'dist',
 images: {
     unoptimized: true
   },
