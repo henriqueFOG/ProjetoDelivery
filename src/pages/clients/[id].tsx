@@ -3,6 +3,8 @@ import { useRouter } from 'next/router';
 import { useData } from '@/contexts/DataContext';
 import { Box, TextField, Typography } from '@mui/material';
 
+
+
 const ClientePage = () => {
   const router = useRouter();
   const { id } = router.query;
@@ -15,7 +17,7 @@ const ClientePage = () => {
     }
   }, [id, currentClientId, setCurrentClientId]);
   
-    useEffect(() => {
+  useEffect(() => {
     if (typeof id === 'string' && id !== currentClientId) {
       setCurrentClientId(id);
     }
@@ -44,3 +46,4 @@ const ClientePage = () => {
 };
 
 export default ClientePage;
+
