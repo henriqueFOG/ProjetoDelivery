@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: '/nextjs',
+  basePath: '/src/pages',
     output:'export',
     distDir:'dist',
 images: {
