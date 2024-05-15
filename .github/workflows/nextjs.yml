@@ -34,7 +34,7 @@ jobs:
         run: npm run build
 
       - name: Export static pages
-        run: npm run export  # Adicionando comando de exportação se necessário
+        run: npm run export  # Adicionando comando de exportação
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -48,5 +48,15 @@ jobs:
     runs-on: windows-latest
     needs: build
     steps:
+      - name: Setup Node.js  # Necessário para garantir que o Node.js está disponível durante o deploy
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
