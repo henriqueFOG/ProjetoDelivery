@@ -1,20 +1,29 @@
-import react from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { useData } from '../../contexts/DataContext';
+import { useData } from '@/contexts/DataContext';
+import { Container, Typography, List, ListItem, ListItemText } from '@mui/material';
 
 const Promotions = () => {
-  const data = useData();
+  const { clientes } = useData();
+
   return (
-    <div>
-      <h1>Clientes</h1>
-      {data && data.clientes.map(cliente => (
-        <p key={cliente.id}>
-          <Link href={`/cliente/${cliente.id}`}>
-            <a>{cliente.nome}</a>
-          </Link>
-        </p>
-      ))}
-    </div>
+    <Container>
+      <Typography variant="h4" gutterBottom>
+        Clientes
+      </Typography>
+      <List>
+        {clientes.map(cliente => (
+          <ListItem key={cliente.id} component="div">
+            <Link href={`/cliente/${cliente.id}`} passHref>
+              <a style={{ textDecoration: 'none', color: 'inherit' }}>
+                <ListItemText primary={cliente.nome} />
+              </a>
+            </Link>
+          </ListItem>
+        ))}
+      </List>
+    </Container>
   );
 };
+
 export default Promotions;

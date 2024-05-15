@@ -21,7 +21,7 @@ const MenuPage = () => {
       <Typography variant="h4" gutterBottom component="div" sx={{ textAlign: 'center', mb: 3 }}>
         Cardápio
       </Typography>
-      <Grid alignContent="center" container spacing={2}>
+      <Grid container spacing={2} justifyContent="center">
         {menus.length > 0 ? (
           menus.map((menu) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={menu.id}>

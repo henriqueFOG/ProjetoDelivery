@@ -1,71 +1,58 @@
-import { useEffect } from 'react';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
-import { useData } from '@/contexts/DataContext';
-import { Box, TextField, Typography } from '@mui/material';
+import { Box, Typography, TextField } from '@mui/material';
 
+interface Client {
+  id: string;
+  name: string;
+  details: string;
+}
 
+interface ClientePageProps {
+  client: Client | null;
+}
 
-const ClientePage = ({}) => {
+const ClientePage = ({ client }: ClientePageProps) => {
   const router = useRouter();
-  const { id } = router.query;
-  const { clientes, setCurrentClientId,currentClientId } = useData(); // Acesse os clientes do contexto
 
-  useEffect(() => {
-    console.log("useEffect chamado: id = ", id, ", currentClientId = ", currentClientId);
-    if (typeof id === 'string' && id !== currentClientId) {
-      setCurrentClientId(id);
-    }
-  }, [id, currentClientId, setCurrentClientId]);
-  
-  useEffect(() => {
-    if (typeof id === 'string' && id !== currentClientId) {
-      setCurrentClientId(id);
-    }
-  }, [id, setCurrentClientId, currentClientId]);
-  
-  useEffect(() => {
-    console.log("ClientePage montado");
-  }, []);
-  
-
-  // Encontre o cliente atual usando o id
-  const cliente = clientes.find(cliente => cliente.id === id);
+  if (!client) {
+    return (
+      <Box p={4}>
+        <TextField fullWidth disabled value="Cliente não encontrado." />
+      </Box>
+    );
+  }
 
   return (
     <Box p={4}>
-      {cliente ? (
-        <>
-          <Typography variant="h5">{cliente.nome}</Typography>
-          <Typography variant="body1">{cliente.detalhes}</Typography>
-        </>
-      ) : (
-        <TextField fullWidth disabled value="Cliente não encontrado." />
-      )}
+      <Typography variant="h5">{client.name}</Typography>
+      <Typography variant="body1">{client.details}</Typography>
     </Box>
   );
 };
 
 export default ClientePage;
 
-export async function getStaticPaths() {
-  // Suponha que você obtenha esses IDs de um arquivo ou de uma API
+export const getStaticPaths: GetStaticPaths = async () => {
   const clients = [{ id: '1' }, { id: '2' }, { id: '3' }]; // Exemplo de dados
 
   const paths = clients.map(client => ({
     params: { id: client.id },
   }));
 
-  return { paths, fallback: 'blocking' };
-}
+  return { paths, fallback: false };
+};
 
-export async function getStaticProps({ params }: { params: { id: string } }) {
-  // Busque dados do cliente baseado em params.id, aqui usamos dados mockados
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  if (!params?.id) {
+    return { props: { client: null } };
+  }
+
   const clientData = {
-    id: params.id,
+    id: params.id as string,
     name: `Cliente ${params.id}`,
     details: `Detalhes do Cliente ${params.id}`,
   };
 
   return { props: { client: clientData } };
-}
-
+};
